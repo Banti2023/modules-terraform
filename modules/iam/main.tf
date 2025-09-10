@@ -1,6 +1,6 @@
 # IAM Role for EKS Cluster
 resource "aws_iam_role" "eks_cluster" {
-  name               = "${var.cluster_name}-cluster-role-ankita"
+  name               = "${var.cluster_name}-cluster-role-banti"
   assume_role_policy = data.aws_iam_policy_document.eks_assume_role.json
 
   tags = {
@@ -27,7 +27,7 @@ resource "aws_iam_role_policy_attachment" "eks_cluster_policies" {
 
 # IAM Role for Node Group
 resource "aws_iam_role" "node_group" {
-  name               = "${var.cluster_name}-node-role-ankita"
+  name               = "${var.cluster_name}-node-role-banti"
   assume_role_policy = data.aws_iam_policy_document.node_assume_role.json
 
   tags = {
