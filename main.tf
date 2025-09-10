@@ -99,4 +99,13 @@ module "vpc_endpoints" {
   interface_vpc_endpoint_type = var.interface_vpc_endpoint_type
   private_dns_enabled    = var.private_dns_enabled
 }
+module "bastion_host" {
+  source           = "./modules/bastion_host"
+  vpc_id           = module.vpc.vpc_id
+  public_subnet_id = module.vpc.public_subnets_ids[0]   # corrected
+  route_table_id   = module.vpc.route_table_public_id    # corrected
+  key_name         = var.ec2_ssh_key
+  ami_id           = "ami-0c02fb55956c7d316" # Amazon Linux 2
+}
+
 
