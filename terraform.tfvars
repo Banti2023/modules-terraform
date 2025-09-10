@@ -78,7 +78,10 @@ ingress_to_port     = 443
 ingress_protocol    = "tcp"
 ingress_cidr_blocks = ["10.10.0.0/16"]
 
-
-
 interface_vpc_endpoint_type = "Interface"
 private_dns_enabled         = true
+
+node_group_tags = {
+  Environment = "dev"
+  Project     = "eks-cluster"
+}

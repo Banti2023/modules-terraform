@@ -38,6 +38,7 @@ variable "private_route_cidr" {
   type = string
 }
 
+# --- Security Group for Workers ---
 variable "sg_name" {
   type = string
 }
@@ -102,10 +103,13 @@ variable "egress_cidr_blocks" {
   type = list(string)
 }
 
+# --- Common Tags ---
 variable "tags" {
   type = map(string)
+  default = {}
 }
 
+# --- EKS IAM Policies ---
 variable "eks_cluster_policies" {
   type = list(string)
 }
@@ -114,6 +118,7 @@ variable "eks_node_policies" {
   type = list(string)
 }
 
+# --- EKS Cluster & Node Group ---
 variable "cluster_version" {
   type = string
 }
@@ -134,6 +139,19 @@ variable "node_group_max" {
   type = number
 }
 
+variable "node_group_tags" {
+  type = map(string)
+}
+
+variable "ec2_ssh_key" {
+  type = string
+}
+
+variable "ami_type" {
+  type = string
+}
+
+# --- EKS Cluster Networking ---
 variable "endpoint_private_access" {
   type = bool
 }
@@ -150,44 +168,17 @@ variable "enabled_cluster_log_types" {
   type = list(string)
 }
 
-variable "ec2_ssh_key" {
-  type = string
-}
-
-variable "ami_type" {
-  type = string
-}
-
-variable "node_group_tags" {
-  type = map(string)
-}
-
-variable "interface_endpoints" {
-  type = list(string)
-}
-
-variable "ingress_from_port" {
-  type = number
-}
-
-variable "ingress_to_port" {
-  type = number
-}
-
-variable "ingress_protocol" {
-  type = string
-}
-
-variable "ingress_cidr_blocks" {
-  type = list(string)
-}
-
+# --- VPC Endpoints ---
 variable "s3_service_name" {
   type = string
 }
 
 variable "s3_vpc_endpoint_type" {
   type = string
+}
+
+variable "interface_endpoints" {
+  type = list(string)
 }
 
 variable "interface_vpc_endpoint_type" {
@@ -204,4 +195,20 @@ variable "endpoints_sg_name" {
 
 variable "endpoints_sg_description" {
   type = string
+}
+
+variable "ingress_from_port" {
+  type = number
+}
+
+variable "ingress_to_port" {
+  type = number
+}
+
+variable "ingress_protocol" {
+  type = string
+}
+
+variable "ingress_cidr_blocks" {
+  type = list(string)
 }
